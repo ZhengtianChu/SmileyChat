@@ -16,6 +16,9 @@ Full Stack Web Social Platform - **SmileyChat**
 - Add a following
 - Remove a following
 - Update headline
+- Add comment
+- Edit comments
+- Edit posts
 - Log out
 
 ![image](https://user-images.githubusercontent.com/40222298/206082219-4f8cf520-bada-47b6-8ebd-ab051c9fd022.png)
