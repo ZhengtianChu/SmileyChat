@@ -23,5 +23,6 @@ Full Stack Web Social Platform - **SmileyChat**
 
 ## Profile Page
 - Update personal info
+- Link account
 
 ![image](https://user-images.githubusercontent.com/40222298/206082280-32a6d1b6-2b03-4470-a23a-caeef8b37344.png)
