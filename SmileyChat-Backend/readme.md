@@ -1,10 +1,4 @@
-# final-backend-lakerschampions
+# SmileyChat-Backend
 
-
-```
-netid: zc51
-frontend: https://smileychat.surge.sh
-backend: https://smileychat.herokuapp.com/
-test: 
-    username: Bret, password:"s11111"
-```
+**FrameWork**: Nodejs + Express + Heroku
+**Backend URL:** https://smileychat.herokuapp.com/
