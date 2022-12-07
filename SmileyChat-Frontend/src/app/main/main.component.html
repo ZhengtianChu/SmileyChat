@@ -1,0 +1,66 @@
+<nav>
+  <div class="container-fluid">
+    <a class="navbar-brand" href="">
+      <img width="36" height="36" src="https://s1.chu0.com/src/img/png/f5/f585c840fdaf4d47a344df75ee34c14a.png?e=1735488000&token=1srnZGLKZ0Aqlz6dk7yF4SkiYf4eP-YrEOdM1sob:00KSYo4Cz9Msm67tpVJbja5C56k=" alt="">
+      SmileyChat
+    </a>
+    <a><d-avatar id="nav-avatar" imgSrc={{avatar}}></d-avatar> </a>
+  </div>
+</nav>
+
+<div class="myContainer" id="userProfile">
+    <div class="btn-group">
+      <button class="btn btn-light titleBtn" type="button" (click)="gotoProfile()"><d-avatar imgSrc={{avatar}}></d-avatar> &nbsp;&nbsp;<strong>{{userInfo.username}}</strong>
+        <d-status type="success">{{userInfo.status}}</d-status>
+      </button>
+    </div>
+
+    <div class="btn-group">
+          <input type="text" class="form-control" [(ngModel)]="newStatus" id="statusText" placeholder="Update headline...">
+          <button type="button" id="updateStatusBtn" (click)="updateStatus()" class="btn btn-outline-secondary">
+            <i class="icon icon-update-kanban"></i>
+          </button>
+    </div>
+    <br><br>
+
+    <div class="btn-group">
+      <button class="btn btn-light normalBtn" type="button" (click)="gotoProfile()"><d-avatar imgSrc="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"></d-avatar>
+        &nbsp;&nbsp;Profile</button>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-light normalBtn" type="button" (click)="logout()"><d-avatar imgSrc="https://cdn-icons-png.flaticon.com/128/1082/1082434.png"></d-avatar>
+        &nbsp;&nbsp;Log out</button>
+    </div>
+
+    <div class="divLine"></div>
+    <div class="profileText"><strong>Following</strong></div>
+    <div id="followingList" *ngFor="let following of userInfo.followingList; let key=index;">
+        <div *ngIf="key < 10">
+          <div class="btn-group">
+            <button class="btn btn-light normalBtn" type="button">
+              <d-avatar imgSrc={{userInfo.followingAvatars[key]}}></d-avatar> &nbsp;&nbsp;<strong>{{following}}</strong><d-status type="success">{{userInfo.followingStatus[key]}}</d-status>
+            </button>
+              <button class="btn btn-light normalBtn" type="button" id="removeFollowingBtn" data-bs-slide-to="0" data-bs-target="#carouselExampleDark" *ngIf="following" (click)="removeFollowing(key)">
+                <i class="icon icon-remove-member-icon"></i>
+             </button>
+          </div>
+        </div>
+        
+    </div>
+
+    <div class="btn-group">
+        <input type="text" class="form-control innerBtn" [(ngModel)]="newFollower" placeholder="New following">
+        <button type="button" id="updateStatusBtn" data-bs-slide-to="0" data-bs-target="#carouselExampleDark" class="btn btn-outline-success" (click)="addFollower()">
+          <i class="icon icon-add-member"></i>
+        </button>
+    </div>
+
+    <span class="checkMsg">
+      {{userExist}}
+    </span>
+</div>
+
+<app-posts #PostsComponent></app-posts>
+
+
+

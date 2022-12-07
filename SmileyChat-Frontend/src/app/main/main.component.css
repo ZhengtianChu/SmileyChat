@@ -1,0 +1,65 @@
+#userProfile{
+    width: 20%;
+    position: fixed;
+    margin-left: 0%;
+    margin-top: 50px;
+    border-radius: 0%;
+    box-shadow: 6px 6px 6px rgba(0,0,0,0.2);
+    height: 100%;
+    background-color: #f8f9fa;
+    padding: 2em;
+}
+
+#nav-avatar{
+    float: right;
+}
+
+.normal{
+    margin-bottom: 5%;
+}
+
+.btn-group{
+    width: 100%;
+    margin-bottom: 2%;
+    margin-top: 1%;
+    
+}
+
+.normalBtn{
+    text-align: left;
+    font-size: 12px;
+}
+
+.titleBtn{
+    text-align: left;
+    font-size: 18px;
+}
+
+.innerBtn{
+    line-height:10px;
+    font-size: 12px;
+    border: hidden;
+}
+
+.profileText{
+    text-align: left;
+}
+
+#statusText{
+    font-size:10px;
+    height: 30px;
+    border: hidden;
+    /* border-radius: 0; */
+}
+
+#updateStatusBtn{
+    height: 30px;
+    font-size:12px;
+    border: hidden;
+    /* border-radius: 0; */
+}
+
+.checkMsg{
+    color:#dc3545;
+    font-size: 12px;
+}

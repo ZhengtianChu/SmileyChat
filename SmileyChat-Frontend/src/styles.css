@@ -1,0 +1,45 @@
+@import '~@devui-design/icons/icomoon/devui-icon.css';
+
+.myContainer{
+    width: 30%;
+    background-color: white;
+    box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.2);
+    margin-top: 100px;
+    padding: 1.5em;
+    opacity: 0.8;
+    float:left; 
+    margin-left: 10%;
+    margin-bottom: 50px;
+}
+
+
+#nav-avatar{
+    float: right;
+}
+
+body{
+    background-color:#F5F5F5 ;
+    font-family:serif
+    /* background-image: url("https://www.toptal.com/designers/subtlepatterns/uploads/circles-and-roundabouts.png"); */
+    /* background-color:transparent; */
+}
+
+.container-fluid{
+    position: fixed;
+    height: 60px;
+    background-color: white;
+    padding:1em;
+    box-shadow: 6px 2px 6px rgba(0,0,0,0.2);
+    z-index:999
+}
+
+
+
+.divLine{
+    margin-top: 3%;
+    border-top:solid;
+    border-color: #dddddd;
+    border-width: 1px;
+    width: 100%;
+    margin-bottom: 2%;
+}

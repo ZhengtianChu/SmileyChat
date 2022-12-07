@@ -1,0 +1,16 @@
+form input{
+    width: 100%;
+}
+
+.btn{
+    margin-top: 2%;
+    width: 100%;
+}
+
+.checkMsg{
+    color:#dc3545;
+}
+
+a{
+    width: 100%;
+}

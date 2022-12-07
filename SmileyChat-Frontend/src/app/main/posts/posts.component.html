@@ -1,0 +1,83 @@
+<div class="myContainer" id="postList">
+    <div class="input-group mb-3">
+        <input type="text" class="form-control searchText" placeholder="Search here..." aria-label="Recipient's username" aria-describedby="searchBtn" [(ngModel)] = "searchText">
+        <button class="btn btn-outline-success innerBtn" type="button" id="searchBtn" (click)="searchPost()"><i class="icon icon-search"></i></button>
+    </div>
+
+    <div class="btn-group">
+        <button class="btn btn-outline-secondary innerBtn" type="button" (click)="getPrePage()"><i class="icon icon-collapse"></i></button>
+        <div *ngFor="let num of pageAmount" >
+            <div *ngIf="pager.curPage == num + 1 ">
+                <button class="btn btn-outline-secondary innerBtn clickedBtn" type="button" (click)="getPagePost(num + 1)">{{num + 1}}</button>
+            </div>
+            <div *ngIf="pager.curPage != num + 1 ">
+                <button class="btn btn-outline-secondary innerBtn" type="button" (click)="getPagePost(num + 1)">{{num + 1}}</button>
+            </div>
+           
+        </div>
+        <button class="btn btn-outline-secondary innerBtn" type="button" (click)="getNextPage()"><i class="icon icon-chevron-right"></i></button>
+    </div>
+
+    <div *ngFor="let post of showPosts; let key=index">
+     <d-card class="card-container">
+        <d-card-header>
+          <d-avatar dCardAvatar imgSrc={{post.avatar}}></d-avatar>
+          <d-card-title>{{post.author}}</d-card-title>
+          <d-card-subtitle><i class="icon-time card-icon"></i>&nbsp;<span>{{post.date}}</span></d-card-subtitle>
+        </d-card-header>
+        <div *ngIf="post.imgUrl">
+            <img src= {{post.imgUrl}} class="card-img-top" alt="Default">
+        </div>      
+        <d-card-content>
+            <div *ngIf="post.author == username" class="btn-group">
+                <textarea dTextarea rows="5" class="editpost" #editPost resize="both" [value]="post.text"></textarea>
+                <button type="button" class="btn btn-outline-secondary editButton" (click)="updatePost(post.pid, editPost.value)">
+                    <i class="icon icon-edit"></i>
+                </button>
+            </div>
+            <div *ngIf="post.author != username" class="btn-group">
+                {{post.text}}
+            </div>
+        </d-card-content>
+
+        <div class="divLine"></div>
+
+        <div class="btn-group">
+            <d-avatar id="nav-avatar" imgSrc={{avatar}}></d-avatar>&nbsp;
+            <input type="text" class="form-control innerBtn" #newComment placeholder="Write comments...">
+            <button type="button" id="updateStatusBtn" class="btn btn-outline-success" (click)="addComment(post.pid, newComment.value)">
+                <i class="icon icon-editor-comment"></i>
+            </button>
+        </div>
+        <div *ngFor="let comment of post.comments; let k=index">
+            <div class="btn-group">
+                <d-avatar imgSrc={{comment.avatar}}></d-avatar>&nbsp;
+                <div *ngIf="comment.author == username" class="btn-group">
+                    <input type="text" class="form-control innerBtn" #commentV value={{comment.text}}>
+                    <button type="button" class="btn btn-outline-secondary editButton"  (click)="editComment(post.pid, commentV.value, k)">
+                        <i class="icon icon-edit"></i>
+                    </button>
+                </div>
+                <div *ngIf="comment.author != username" class="commentDiv2">
+                    <input type="text" class="form-control innerBtn" value={{comment.text}} disabled="disabled">
+                </div>
+            </div>
+        </div>
+      </d-card>
+    </div>
+    
+</div>
+
+<div class="myContainer" id="newPost">
+    <div class="profileText"><strong>New Post</strong></div>
+    <div class="btn-group">
+        <i class="icon icon-insert-image"></i> &nbsp;&nbsp;
+        <input class="form-control form-control-sm" id="formFileSm" placeholder="choose image" accept="image/*" #postImg type="file">
+    </div>
+    <div class="btn-group">
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="10" placeholder="Your post here..." [(ngModel)] = "newPost.body"></textarea>
+    </div>
+    <button type="reset" class="btn btn-outline-secondary"  id="cleanBtn" (click)="clean()"> <i class="icon icon-refresh"></i></button>&nbsp;
+    <button type="button" class="btn btn-outline-success" id="newPostBtn" data-bs-slide-to="0" data-bs-target="#carouselExampleDark" (click)="addPost(postImg)" [disabled]="newPost.body==''"> <i class="icon icon-add-2"></i></button> 
+</div>
+

@@ -1,0 +1,124 @@
+<nav>
+    <div class="container-fluid">
+      <a class="navbar-brand" href="">
+        <img width="36" height="36" src="https://s1.chu0.com/src/img/png/f5/f585c840fdaf4d47a344df75ee34c14a.png?e=1735488000&token=1srnZGLKZ0Aqlz6dk7yF4SkiYf4eP-YrEOdM1sob:00KSYo4Cz9Msm67tpVJbja5C56k=" alt="">
+        SmileyChat
+      </a>
+      <a><d-avatar id="nav-avatar" imgSrc={{imgURL}}></d-avatar> </a>
+  
+    </div>
+</nav>
+
+<div class="myContainer" id="updateContainer">
+    <button type="button" class="btn btn-outline-secondary innerBtn" (click)="gotoMain()"><i class="icon icon-go-back"></i></button>
+
+    <span *ngIf="link == true">
+        <button class="btn btn-outline-info linkBtn"  (click)="unlinkAccount()"><i class="icon icon-link"></i> Unlink</button>
+    </span>
+
+    <span *ngIf="link == false">
+        <button class="btn btn-outline-info linkBtn"  (click)="linkAccount()"><i class="icon icon-link"></i> Link</button>
+    </span>
+
+ 
+    <div class="avatar">
+        <img width="100%" src={{imgURL}} alt="">
+    </div>
+
+ 
+    
+    <form (ngSubmit)="updateInfo()"  #updateForm="ngForm">
+        <label for="exampleFormControlInput1" class="form-label">Upload new avatar</label>
+        <div class="input-group mb-3">
+            <input type="file" #img class="form-control" id="newAvatar" accept="image/*" (change)="uploadAvatar(img)" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+        </div>
+        <span class="checkMsg">
+            {{filetypeMsg}}
+        </span>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Account name</label>
+            <input type="text" class="form-control" name="accountName" placeholder={{oldInfo.accountName}}
+            [(ngModel)]="userInfo.accountName" #accountName="ngModel" disabled="disabled"
+            minlength="4" maxlength="12">
+        </div>
+    
+    
+    
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Email address</label>
+            <input type="email" class="form-control" name="email" 
+            [(ngModel)]="userInfo.email" #email="ngModel"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" placeholder={{oldInfo.email}}>
+            <span class="checkMsg" *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+                <span *ngIf="email?.errors?.['pattern']">
+                    Enter the correct format
+                </span>
+            </span>
+        </div>
+    
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Phone number</label>
+            <input type="text" class="form-control" placeholder={{oldInfo.phoneNum}} name="phoneNum" maxlength="12"
+            [(ngModel)]="userInfo.phoneNum" #phoneNum="ngModel" 
+            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+            <span class="checkMsg" *ngIf="phoneNum?.invalid && (phoneNum?.dirty || phoneNum?.touched)">
+                <span *ngIf="phoneNum?.errors?.['pattern']">
+                    Enter the correct format
+                </span>
+            </span>
+        </div>
+    
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Zipcode (US)</label>
+            <input type="text" class="form-control" name="zipcode" placeholder={{oldInfo.zipcode}} maxlength="5"
+            [(ngModel)]="userInfo.zipcode"  #zipcode="ngModel"
+            pattern="[0-9]{5}">
+            <span class="checkMsg" *ngIf="zipcode?.invalid && (zipcode?.dirty || zipcode?.touched)">
+                <span *ngIf="zipcode?.errors?.['pattern']">
+                    Enter the correct format (12345)
+                </span>
+            </span>
+        </div>
+    
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">New password</label>
+            <input type="password" class="form-control" name="password" 
+            [(ngModel)]="userInfo.password" #password="ngModel" minlength="6" maxlength="16">
+            <span class="checkMsg" *ngIf="password?.invalid && (password?.dirty || password?.touched)">
+                <span *ngIf="password?.errors?.['minlength']">
+                    Password must be as least 6 chars long
+                </span> 
+            </span>
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">New password (again)</label>
+            <input type="password" class="form-control" name="password2" 
+            [(ngModel)]="userInfo.password2" #password="ngModel" minlength="6" maxlength="16">
+            <span class="checkMsg" *ngIf=" password?.dirty || password?.touched">
+                <span class="checkMsg" *ngIf="userInfo.password != userInfo.password2">
+                    Passwords do not match.
+                </span> 
+            </span>
+        </div>
+
+
+        <div class="d-grid gap-2">
+            <button class="btn btn-outline-primary" type="submit" id="updateBtn" [disabled]="!updateForm.form.valid || userInfo.password != userInfo.password2">Update info</button>
+            <button class="btn btn-outline-secondary" type="reset" id="resetBtn">Reset</button>
+        </div>
+
+    </form>
+    <span class="checkMsg">
+        <span *ngIf="changeEmailMsg != '' && changeEmailMsg != null">{{changeEmailMsg}} <br></span>
+        <span *ngIf="changePhoneMsg != '' && changePhoneMsg != null">{{changePhoneMsg}} <br></span>
+        <span *ngIf="changeZipMsg != '' && changeZipMsg != null">{{changeZipMsg}} <br></span>
+        <span *ngIf="changePwdMsg != '' && changePwdMsg != null">{{changePwdMsg}} <br></span>
+    </span>
+    
+</div>
+
+<div *ngIf="linkMsg" class = "myContainer" id="messageContainer">
+    {{linkMsg}}
+</div>

@@ -1,0 +1,115 @@
+<div class="myContainer">
+    <h2><strong>Sign up new account</strong></h2>
+
+    <form (ngSubmit)="onSubmit()"  #signupForm="ngForm">
+        <p>
+            <label for="accountName">Account name</label>
+            <input type="text" class="form-control" id="accountName" name="accountName"
+            [(ngModel)]="userInfo.username" #accountName="ngModel" pattern="[a-zA-Z][a-zA-Z0-9]{3,15}"
+            minlength="4" maxlength="12" required>
+            <span class="checkMsg" *ngIf="accountName?.invalid && (accountName?.dirty || accountName?.touched)">
+                <span *ngIf="accountName?.errors?.['required']">
+                    Name is required.
+                </span> 
+                <span *ngIf="accountName?.errors?.['minlength']">
+                    Name must be as least 4 chars long.
+                </span> 
+                <span *ngIf="accountName?.errors?.['pattern']">
+                    Name must start with a letter.
+                </span>
+            </span>
+        </p>
+  
+        
+        <p>
+            <label for="email">Email Address:</label><br>
+            <input type="email" class="form-control" name="email" 
+            [(ngModel)]="userInfo.email" #email="ngModel"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" placeholder="name@example.com" required>
+            <span class="checkMsg" *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+                <span *ngIf="email?.errors?.['required']">
+                    Email is required.
+                </span>
+                <span *ngIf="email?.errors?.['pattern']">
+                    Enter the correct format.
+                </span>
+            </span>
+        </p>
+    
+        <p>
+            <label for="phoneNum">Phone Number</label><br>
+            <input type="tel" class="form-control" name="phoneNum" 
+            [(ngModel)]="userInfo.phoneNum" #phoneNum="ngModel" 
+            placeholder="123-345-6789" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+            <span class="checkMsg" *ngIf="phoneNum?.invalid && (phoneNum?.dirty || phoneNum?.touched)">
+                <span *ngIf="phoneNum?.errors?.['required']">
+                    Phone number is required.
+                </span>
+                <span *ngIf="phoneNum?.errors?.['pattern']">
+                    Enter the correct format.
+                </span>
+            </span>
+        </p>
+    
+        <p>
+            <label for="birthday">Date of Birth</label>
+            <input type="date" class="form-control" name="birthday" min="1900-01-01" max="2005-01-01"
+            [(ngModel)]="userInfo.birthday" #birthday="ngModel" required>
+            <span class="checkMsg" *ngIf="birthday?.invalid && (birthday?.dirty || birthday?.touched)">
+                <span *ngIf="phoneNum?.errors?.['required']">
+                    Birthday is required.
+                </span>
+            </span>
+        </p>
+    
+        <p>
+            <label for="zipcode">Zipcode (US)</label>
+            <input type="text" class="form-control" name="zipcode" placeholder="12345" 
+            [(ngModel)]="userInfo.zipcode"  #zipcode="ngModel"
+            pattern="[0-9]{5}" required>
+            <span class="checkMsg" *ngIf="zipcode?.invalid && (zipcode?.dirty || zipcode?.touched)">
+                <span *ngIf="zipcode?.errors?.['required']">
+                    Zipcode is required.
+                </span>
+                <span *ngIf="zipcode?.errors?.['pattern']">
+                    Enter the correct format (12345).
+                </span>
+            </span>
+        </p>
+    
+        <p>
+            <label for="pwd">Password</label>
+            <input type="password" class="form-control" name="password" 
+            [(ngModel)]="userInfo.password" #password="ngModel" minlength="6" maxlength="16"
+            required>
+            <span class="checkMsg" *ngIf="password?.invalid && (password?.dirty || password?.touched)">
+                <span *ngIf="password?.errors?.['required']">
+                    Password is required.
+                </span> 
+                <span *ngIf="password?.errors?.['minlength']">
+                    Password must be as least 6 chars long.
+                </span> 
+            </span>
+        </p>
+    
+        <p>
+            <label for="pwd2">Confirm Password</label>
+            <input type="password" class="form-control" name="password2" 
+            [(ngModel)]="userInfo.password2" #password2="ngModel" minlength="6" maxlength="16"
+            required>
+            <span class="checkMsg" *ngIf="password2?.dirty || password2?.touched">
+                <span class="checkMsg" *ngIf="userInfo.password != userInfo.password2">
+                    Passwords do not match.
+                </span> 
+            </span>
+        </p>
+
+        <button type="submit" class="btn btn-outline-success" id="signUpBtn" [disabled]="!signupForm.form.valid || userInfo.password != userInfo.password2"><i class="icon icon-op-mine"></i> Sign up</button>
+        <button type="reset" class="btn btn-outline-secondary"><i class="icon icon-op-clearup"></i> Reset</button>
+        <span class="checkMsg">
+            {{used}}
+        </span>
+    </form>    
+
+    By clicking "Sign up", you agree to our terms of service, privacy policy and cookie policy.
+</div>
