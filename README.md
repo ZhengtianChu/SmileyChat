@@ -1,2 +1,3 @@
 # SmileyChat
-Web Social Platform (Visible after Dec.2022)
+Full Stack Web Social Platform - **SmileyChat**
+
